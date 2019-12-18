@@ -35,20 +35,11 @@ steps:
 - task: ArchiveFiles@2
   displayName: 'Package ARM templates'
   inputs:
-    rootFolderOrFile: '$(Build.SourcesDirectory)/Infrastructure/*.json'
+    rootFolderOrFile: '$(Build.SourcesDirectory)/Infrastructure'
     includeRootFolder: false
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/Infrastructure.zip'
     replaceExistingArchive: true
-#Create infrastructure artifact 2
-- task: ArchiveFiles@2
-  displayName: 'Package PS Script'
-  inputs:
-    rootFolderOrFile: '$(Build.SourcesDirectory)/Infrastructure/*.ps1'
-    includeRootFolder: false
-    archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/Infrastructure.zip'
-    replaceExistingArchive: false
 # This code takes all the files in $(Build.ArtifactStagingDirectory) and uploads them as an artifact of your build.
 - task: PublishBuildArtifacts@1
   displayName: 'Create artifact'
