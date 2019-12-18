@@ -1,0 +1,22 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- '*'
+
+pool:
+  name: Hosted Windows 2019 with VS2019
+  demands: azureps
+
+steps:
+# Build and deploy web front end part of the app
+# Provision the infrastructure we need to run this app using arm template in Infrastructure proj
+- task: AzurePowerShell@3
+  inputs:
+    azureSubscription: 'CF-AIRS-ServiceConnection'
+    ScriptPath: 'Infrastructure/Deploy-AzureResourceGroup.ps1'
+    ScriptArguments: -ResourceGroupName 'DS-$(Build.SourceBranchName)' -ResourceGroupLocation 'westeurope'
+    azurePowerShellVersion: LatestVersion
+    
