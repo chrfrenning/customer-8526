@@ -31,6 +31,24 @@ steps:
     publishWebProjects: True
     arguments: '--configuration Release --output $(Build.ArtifactStagingDirectory)'
     zipAfterPublish: True
+#Create infrastructure artifact
+- task: ArchiveFiles@2
+  displayName: 'Package ARM templates'
+  inputs:
+    rootFolderOrFile: 'Infrastructure/*.json'
+    includeRootFolder: true
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/Infrastructure.zip'
+    replaceExistingArchive: true
+#Create infrastructure artifact
+- task: ArchiveFiles@2
+  displayName: 'Package PS Script'
+  inputs:
+    rootFolderOrFile: 'Infrastructure/*.ps1'
+    includeRootFolder: true
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/Infrastructure.zip'
+    replaceExistingArchive: false
 # This code takes all the files in $(Build.ArtifactStagingDirectory) and uploads them as an artifact of your build.
 - task: PublishBuildArtifacts@1
   displayName: 'Create artifact'
