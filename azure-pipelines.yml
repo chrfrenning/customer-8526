@@ -45,4 +45,4 @@ steps:
   displayName: 'Create artifact'
   inputs:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
-    artifactName: 'WebFrontEnd'
+    artifactName: 'WebApp'
