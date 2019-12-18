@@ -35,17 +35,17 @@ steps:
 - task: ArchiveFiles@2
   displayName: 'Package ARM templates'
   inputs:
-    rootFolderOrFile: 'Infrastructure/*.json'
-    includeRootFolder: true
+    rootFolderOrFile: '$(Build.SourcesDirectory)/Infrastructure/*.json'
+    includeRootFolder: false
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/Infrastructure.zip'
     replaceExistingArchive: true
-#Create infrastructure artifact
+#Create infrastructure artifact 2
 - task: ArchiveFiles@2
   displayName: 'Package PS Script'
   inputs:
-    rootFolderOrFile: 'Infrastructure/*.ps1'
-    includeRootFolder: true
+    rootFolderOrFile: '$(Build.SourcesDirectory)/Infrastructure/*.ps1'
+    includeRootFolder: false
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/Infrastructure.zip'
     replaceExistingArchive: false
